@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	죄송합니다. 서버에러입니다.
+	<ul>
+		<li th:text="${status}">상태</li>
+		<li th:text="${'경로 : ' + path}">경로</li>
+		<li th:text="${'요청시각 : ' + #calendars.format(timestamp,'yyyy-MM-dd hh:mm:ss')}">요청시각</li>
+		<li th:text="${'예외 : ' + exception}">예외</li>
+		<li th:text="${'메시지 : ' + message}">메시지</li>
+	</ul>
+	<hr />
+	<a href="/">홈으로</a> <br />
+</body>
+</html>

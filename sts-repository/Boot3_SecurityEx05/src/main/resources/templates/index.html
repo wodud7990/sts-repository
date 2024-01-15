@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>스프링 시큐리티</title>
+</head>
+<body>
+	<div th:insert="menu.html"></div>
+	<h2>스프링 시큐리티</h2>
+	<hr />
+	<img src="images/linux.png" alt="" /> 
+	<hr />
+	<strong>서버시간 : <span th:text="${today}"></span></strong>
+	<hr />
+	<b>현재 사용자 : <span sec:authentication="name"></span></b>
+    <hr />
+	<p sec:authorize="hasRole('USER')">user권한일 경우</p>
+	<p sec:authorize='hasRole("ADMIN")'>admin권한일 경우</p>
+	<fieldset sec:authorize="isAuthenticated()">
+		<legend>로그인해서 인증을 받은 사람</legend>
+		인증받은 사람 : <span sec:authentication="name"></span> <br />
+		인증받은 사람의 권한 : <span sec:authentication="principal.authorities"></span> <br />
+		<a href="logout">Logout</a>
+	</fieldset>
+    <!--
+	<hr />
+    ROLE_USER 권한을 갖는다면 이 글이 보임
+    <h1 sec:authorize="hasRole('ADMIN')">Has admin Role</h1>
+    -->
+    
+    <!--
+    ROLE_ADMIN 권한을 갖는다면 이 글이 보임
+    <h1 sec:authorize="hasRole('USER')">Has user Role</h1> 
+    -->
+
+    <!--
+    어떤 권한이건 상관없이 인증이 되었다면 이 글이 보임
+    <div sec:authorize="isAuthenticated()">
+        Only Authenticated user can see this Text
+    </div>
+    -->
+
+    <!--
+    인증시 사용된 객체에 대한 정보
+    <b>Authenticated DTO:</b>
+    <div sec:authentication="principal"></div>
+    -->
+
+    <!--
+    인증시 사용된 객체의 Username (ID)
+    <b>Authenticated username:</b>
+    <div sec:authentication="name"></div>
+    -->
+
+    <!--
+    객체의 권한
+    <b>Authenticated user role:</b>
+    <div sec:authentication="principal.authorities"></div>
+    -->
+</body>
+</html>
+

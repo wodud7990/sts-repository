@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.top2blue.boot3.dao.EmployeeDao">
+	<!-- namespace를 인터페이스 이름과 일치 시켜야 한다. -->
+	<select id="selectAll" resultType="Employee">
+		SELECT * FROM EMPLOYEE ORDER BY EMPID DESC
+	</select>
+	<select id="selectByempId" resultType="Employee" parameterType="string">
+		SELECT * FROM EMPLOYEE EMPID=#{empId}
+	</select>
+	<insert id="insert" parameterType="Employee">
+		INSERT INTO EMPLOYEE (EMPID, EMPNAME) VALUES (#{empId}, #{empName})
+	</insert>
+	<update id="update" parameterType="Employee">
+		update EMPLOYEE set EMPID=#{empId}, EMPNAME=#{empName} where EMPID=#{empId}
+	</update>
+	<delete id="delete" parameterType="string">
+		delete from EMPLOYEE where EMPID=#{empId}
+	</delete>
+</mapper>

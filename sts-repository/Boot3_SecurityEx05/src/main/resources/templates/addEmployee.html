@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Add Employee</title>
+</head>
+<body>
+	<div th:insert="menu.html"></div>
+	<h3 style="color: red;">Add New Employee</h3>
+
+	<div id="addEmployee">
+		<form action="addNewEmployee" method="post">
+				<label>Enter Employee Id : <input type="text" name="empId" /></label>
+				<label>Enter Name : <input type="text" name="empName" /></label>
+			<input type="submit" value="Submit" />
+		</form>
+	</div>
+	<fieldset sec:authorize="isAuthenticated()">
+		<legend>로그인해서 인증을 받은 사람</legend>
+		인증받은 사람 : <span sec:authentication="name"></span> <br />
+		인증받은 사람의 권한 : <span sec:authentication="principal.authorities"></span> <br />
+		<a href="logout">Logout</a>
+		<a href="/">홈으로</a>
+	</fieldset>
+</body>
+</html>
